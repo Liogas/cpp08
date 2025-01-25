@@ -6,7 +6,7 @@
 /*   By: glions <glions@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/23 12:35:21 by glions            #+#    #+#             */
-/*   Updated: 2025/01/23 13:09:18 by glions           ###   ########.fr       */
+/*   Updated: 2025/01/25 12:26:32 by glions           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,6 +46,14 @@ void Span::addNumber(int n)
 		throw Span::NoSpaceException();
 	this->_v.push_back(n);
 	this->_size++;
+}
+
+void Span::addNumber(std::vector<int>::iterator begin, std::vector<int>::iterator end)
+{
+	if (this->_size + std::distance(begin, end) > this->_maxSize)
+		throw Span::NoSpaceException();
+	this->_v.insert(this->_v.end(), begin, end);
+	this->_size += std::distance(begin, end);
 }
 
 unsigned int Span::shortestSpan(void)

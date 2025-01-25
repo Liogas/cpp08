@@ -6,7 +6,7 @@
 /*   By: glions <glions@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/23 11:36:05 by glions            #+#    #+#             */
-/*   Updated: 2025/01/23 12:56:29 by glions           ###   ########.fr       */
+/*   Updated: 2025/01/25 12:25:45 by glions           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,7 @@ class Span
 		Span &operator=(Span const &);
 		~Span();
 		void	addNumber(int);
+		void	addNumber(std::vector<int>::iterator, std::vector<int>::iterator);
 		unsigned int shortestSpan(void);
 		unsigned int longestSpan(void);
 
