@@ -6,7 +6,7 @@
 /*   By: glions <glions@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/23 13:02:04 by glions            #+#    #+#             */
-/*   Updated: 2025/01/25 12:36:33 by glions           ###   ########.fr       */
+/*   Updated: 2025/02/03 18:53:12 by glions           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,8 +25,11 @@ int main(void)
 			sp.addNumber(17);
 			sp.addNumber(9);
 			sp.addNumber(11);
-			std::cout << sp.shortestSpan() << std::endl;
-			std::cout << sp.longestSpan() << std::endl;
+			std::cout << "Values on sp : ";
+			sp.showValues();
+			std::cout << std::endl;
+			std::cout << "ShortestSpan -> " << sp.shortestSpan() << std::endl;
+			std::cout << "LongestSpan -> " << sp.longestSpan() << std::endl;
 		} catch(std::exception &e)
 		{
 			std::cout << e.what() << std::endl;
@@ -35,21 +38,25 @@ int main(void)
 		std::cout << std::endl;
 	}
 	{
-		std::cout << "Test with 1000 random numbers" << std::endl;
+		std::cout << "Test with 20 random numbers" << std::endl;
 		try
 		{
-			unsigned int size = 1000;
+			unsigned int size = 20;
 			srand(time(NULL));
 			Span sp = Span(size);
 			for (unsigned int i = 0; i < size; i++)
-				sp.addNumber(rand() % (100000 * 50) + 1);
-			std::cout << sp.shortestSpan() << std::endl;
-			std::cout << sp.longestSpan() << std::endl;
+				sp.addNumber(rand() % (size * 50) - 200);
+			std::cout << "Values on sp : ";
+			sp.showValues();
+			std::cout << std::endl;
+			std::cout << "ShortestSpan -> " << sp.shortestSpan() << std::endl;
+			std::cout << "LongestSpan -> " << sp.longestSpan() << std::endl;
+			std::cout << "TRY TO ADD ONE MORE VALUE : ";
+			sp.addNumber(60);
 		}
 		catch (std::exception &e)
 		{
 			std::cout << e.what() << std::endl;
-			return (1);
 		}	
 		std::cout << std::endl;
 	}
@@ -65,8 +72,11 @@ int main(void)
 			v.push_back(7);
 			v.push_back(9);
 			sp.addNumber(v.begin(), v.end());
-			std::cout << sp.shortestSpan() << std::endl;
-			std::cout << sp.longestSpan() << std::endl;
+			std::cout << "Values on sp : ";
+			sp.showValues();
+			std::cout << std::endl;
+			std::cout << "ShortestSpan -> " << sp.shortestSpan() << std::endl;
+			std::cout << "LongestSpan -> " << sp.longestSpan() << std::endl;
 		}
 		catch(const std::exception& e)
 		{

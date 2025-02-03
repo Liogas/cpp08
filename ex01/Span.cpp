@@ -6,24 +6,20 @@
 /*   By: glions <glions@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/23 12:35:21 by glions            #+#    #+#             */
-/*   Updated: 2025/01/25 12:35:44 by glions           ###   ########.fr       */
+/*   Updated: 2025/02/03 18:49:56 by glions           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Span.hpp"
 
-Span::Span(void) : _maxSize(1), _size(0)
-{}
+Span::~Span(){}
+Span::Span(void) : _maxSize(0), _size(0) {}
+Span::Span(Span const &copy) : _maxSize(copy._maxSize), _size(copy._size), _v(copy._v) {}
 
 Span::Span(unsigned int n): _maxSize(n), _size(0)
 {
 	if (n == 0)
 		throw Span::NoSpaceException();
-}
-
-Span::Span(Span const &copy)
-{
-	*this = copy;
 }
 
 Span &Span::operator=(Span const &copy)
@@ -36,9 +32,6 @@ Span &Span::operator=(Span const &copy)
 	}
 	return (*this);
 }
-
-Span::~Span()
-{}
 
 void Span::addNumber(int n)
 {
@@ -60,7 +53,7 @@ unsigned int Span::shortestSpan(void)
 {
 	int min = -1;
 	if (this->_size <= 1)
-		throw Span::NoSpaceException();
+		throw Span::EmptyException();
 	std::sort(_v.begin(), _v.end());
 	int i = -1;
 	while (++i < static_cast<int>(this->_size))
@@ -75,7 +68,7 @@ unsigned int Span::longestSpan(void)
 {
 	int max = -1;
 	if (this->_size <= 1)
-		throw Span::NoSpaceException();
+		throw Span::EmptyException();
 	std::sort(_v.begin(), _v.end());
 	int i = -1;
 	while (++i < static_cast<int>(this->_size))
@@ -86,7 +79,18 @@ unsigned int Span::longestSpan(void)
 	return (max);
 }
 
+void Span::showValues(void)
+{
+	for(unsigned int i = 0; i < this->_size; i++)
+		std::cout << this->_v[i] << " ";
+}
+
 const char *Span::NoSpaceException::what() const throw()
 {
 	return ("No space left in the Span");
+}
+
+const char *Span::EmptyException::what() const throw()
+{
+	return ("Array is empty or has only one value");
 }
