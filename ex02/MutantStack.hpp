@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: glions <glions@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/01/27 17:34:10 by glions            #+#    #+#             */
-/*   Updated: 2025/01/27 18:52:34 by glions           ###   ########.fr       */
+/*   Created: 2025/02/03 19:06:26 by glions            #+#    #+#             */
+/*   Updated: 2025/02/03 19:20:25 by glions           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,19 +20,17 @@ template <typename T>
 class MutantStack : public std::stack<T>
 {
     public:
-        MutantStack() : std::stack<T>() {}
+        MutantStack(void) : std::stack<T>() {}
         MutantStack(MutantStack const &copy) : std::stack<T>(copy) {}
         MutantStack &operator=(MutantStack const &copy)
         {
             if (this != &copy)
                 std::stack<T>::operator=(copy);
             return (*this);
-        }
-        virtual ~MutantStack() {}
-
+        } 
         typedef typename std::stack<T>::container_type::iterator iterator;
-        iterator begin() { return (std::stack<T>::c.begin()); }
-        iterator end() { return (std::stack<T>::c.end()); }
+        iterator begin() { return (this->c.begin()); }
+        iterator end() { return (this->c.end()); }
 };
 
 #endif
